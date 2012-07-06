@@ -21,6 +21,7 @@ group :development do
   gem 'pry'
   gem 'pry-nav'
   gem 'hirb'
+  gem 'localtunnel'   #localtunnel -k ~/.ssh/id_dsa.pub 4000 => public url
 end
 
 # To use ActiveModel has_secure_password
