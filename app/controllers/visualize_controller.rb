@@ -2,9 +2,11 @@ class VisualizeController < ApplicationController
   before_filter :init_settings
 
   def index
+    session[:navigation_3d] = params[:navigation_3d] if params[:navigation_3d].present?
     session[:show_grid] = params[:show_grid] if params[:show_grid].present?
     session[:text_to_render] = params[:text] if params[:text].present?
     session[:calculation] = params[:calculation] if params[:calculation].present?
+    @navigation_3d = session[:navigation_3d]
     @show_grid = session[:show_grid]
     @text_to_render = session[:text_to_render] || "Dies ist ein Standard Text" 
     @calculation = session[:calculation] || "char"

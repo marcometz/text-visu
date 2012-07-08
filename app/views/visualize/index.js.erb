@@ -214,13 +214,15 @@ jQuery(document).ready(function() {
 
     x = camera.position.x;
     z = camera.position.z;
-
+    <% if @navigation_3d  %>
+      camera.position.y = x * Math.cos(targetRotationX/10) + z * Math.sin(targetRotationX/10);
+    <% end %>
     camera.position.x = x * Math.cos(targetRotation/10) + z * Math.sin(targetRotation/10);
     camera.position.z = z * Math.cos(targetRotation/10) - x * Math.sin(targetRotation/10);
     camera.lookAt(scene.position);
 
 
-    // camera.position.x = ( targetRotation - camera.rotation.y ) * 0.05; 
+    
     //camera.position.y = ( targetRotation - camera.rotation.y ) * 0.05; 
 
     renderer.render( scene, camera );

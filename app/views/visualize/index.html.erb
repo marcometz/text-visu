@@ -12,8 +12,10 @@
     <%= radio_button_tag "calculation", "words", (@calculation == "words") %> Worte <br/>
     <%= radio_button_tag "calculation", "wordcount", (@calculation == "wordcount") %> Worthäufigkeit <br/>
     <%= hidden_field_tag "show_grid", false %>
+    <%= hidden_field_tag "navigation_3d", false %>
     <br/>
-    <%= check_box_tag "show_grid", "true", @show_grid == "true" %> Gitter anzeigen
+    <%= check_box_tag "show_grid", "true", @show_grid == "true" %> Gitter anzeigen<br/>
+    <%= check_box_tag "navigation_3d", "true", @navigation_3d == "true" %> 3D Navigation
     <%= submit_tag "Run Visualization" %>
   <% end -%>
 </div> 
