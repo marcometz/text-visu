@@ -18,3 +18,24 @@
   border:2px solid black;
   box-shadow:10px 10px 10px grey;
 }
+
+#legende{
+  clear:both;
+  padding-top:20px;
+  margin-left:15%;
+  ul{
+    list-style:none;
+    li{
+      float:left;
+      width:25px;
+      height:25px;
+      margin:2px;
+      text-align:center;  
+      div.label{
+        padding-top:25px;
+        font-weight:bold;
+      }
+      
+    }
+  }
+}

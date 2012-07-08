@@ -11,3 +11,15 @@
 </div> 
 
 <div id="container"></div>
+
+<div id="legende">
+  <ul>
+    <% Setting.where("name LIKE '%color_of-%'").order(:name).each do |colorbox| %>
+      <li style="background-color:rgb(<%= colorbox.value %>);">
+        <div class="label">
+          <%= colorbox.name.gsub("color_of-", "").gsub("-(r,g,b)","") %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>
