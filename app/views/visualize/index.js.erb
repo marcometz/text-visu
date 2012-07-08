@@ -214,7 +214,7 @@ jQuery(document).ready(function() {
 
     x = camera.position.x;
     z = camera.position.z;
-    <% if @navigation_3d  %>
+    <% if @navigation_3d == "true"  %>
       camera.position.y = x * Math.cos(targetRotationX/10) + z * Math.sin(targetRotationX/10);
     <% end %>
     camera.position.x = x * Math.cos(targetRotation/10) + z * Math.sin(targetRotation/10);
