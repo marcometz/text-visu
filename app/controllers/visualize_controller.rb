@@ -8,7 +8,7 @@ class VisualizeController < ApplicationController
     session[:calculation] = params[:calculation] if params[:calculation].present?
     @navigation_3d = session[:navigation_3d]
     @show_grid = session[:show_grid]
-    @text_to_render = session[:text_to_render] || "Dies ist ein Standard Text" 
+    @text_to_render = session[:text_to_render].to_s.downcase || "Dies ist ein Standard Text" 
     @calculation = session[:calculation] || "char"
     @max_cubes_per_line = 0
     @lines = []
