@@ -1,10 +1,13 @@
-<script src="/assets/visualize.js" type="text/paperscript" canvas="canvas" id="script"></script>
+<script src="/visualize/index.js"></script>
 
 <h1>Visualize Text</h1>
 
 <div id="sidebar">
   <h3>Bitte geben Sie einen Text ein:</h3>
-  <%= text_area_tag "text", "Dies ist ein Standard Text", :id => "text" %>
+  <%= form_tag "/visualize/render" do  -%>
+    <%= text_area_tag "text", @text_to_render, :id => "text" %>  
+    <%= submit_tag "Submit" %>
+  <% end -%>
 </div> 
 
-<canvas id="canvas" resize="true"></canvas>
+<div id="container"></div>

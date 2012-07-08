@@ -1,4 +1,5 @@
 TextVisu::Application.routes.draw do
+  post "visualize/render" => "visualize#index" 
   get "visualize/index"
 
   resources :settings
