@@ -11,3 +11,16 @@
  *= require_self
  *= require_tree .
  */
+
+ #nav{
+  float: right;
+ }
+
+ a.nav {
+   text-decoration: none;  
+   font-weight:bold;
+   border:1px solid grey;
+   padding:5px;
+   border-radius: 5px;
+ }
+ 

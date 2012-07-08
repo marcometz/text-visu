@@ -8,8 +8,10 @@
 </head>
 <body>
 
-<%= link_to "Visualize", "/visualize/index" %>
-<%= link_to "Settings", settings_path() %>
+<div id="nav">
+  <%= link_to "Run Visualization", "/visualize/index", :class => "nav" %>
+  <%= link_to "Settings", settings_path(), :class => "nav" %>
+</div>
 
 <%= yield %>
 

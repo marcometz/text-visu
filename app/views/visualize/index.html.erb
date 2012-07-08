@@ -1,8 +1,9 @@
 <script src="/visualize/index.js"></script>
 
-<h1>Visualize Text</h1>
 
-<div id="sidebar">
+
+<div id="sidebar" style="width:<%= @inner_width %>px;">
+  <h1>Visualize Text</h1>
   <h3>Bitte geben Sie einen Text ein:</h3>
   <%= form_tag "/visualize/render" do  -%>
     <%= text_area_tag "text", @text_to_render, :id => "text" %>  
@@ -10,10 +11,10 @@
   <% end -%>
 </div> 
 
-<div id="container"></div>
+<div id="container" style="width:<%= @inner_width %>px;"></div>
 
 
-<div id="legende">
+<div id="legende" style="width:<%= @inner_width %>px;">
   <ul>
     <% Setting.where("name LIKE '%color_of-%'").order(:name).each do |colorbox| %>
       <li style="background-color:rgb(<%= colorbox.value %>);">
