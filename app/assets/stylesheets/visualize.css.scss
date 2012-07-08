@@ -22,6 +22,21 @@
   }
 }
 
+#controlls{
+  float:left;
+  padding-left:20px;
+  text-align:center;
+  line-height:30px;
+  a{
+    margin:10px;
+    text-decoration: none;  
+    font-weight:bold;
+    border:1px solid grey;
+    padding:5px;
+    border-radius: 5px;
+  }
+}
+
 #legende{
   clear:both;
   padding-top:20px;

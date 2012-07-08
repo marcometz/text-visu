@@ -26,7 +26,7 @@ jQuery(document).ready(function() {
     container = document.getElementById("container");
     scene = new THREE.Scene();
 
-    camera = new THREE.PerspectiveCamera( 70, innerWidth / innerHeight, 100, 10000 );
+    camera = new THREE.PerspectiveCamera( 70, innerWidth / innerHeight, 1, 100000 );
     camera.position.x = <%= (@max_cubes_per_line * ( @cube_size + @cube_padding )/2) %>;
     camera.position.y = <%= (@lines.count * ( @cube_size + @cube_padding )/4) %>;
     camera.position.z = <%= (@max_cubes_per_line * ( @cube_size + @cube_padding )/2)%>;
@@ -79,6 +79,47 @@ jQuery(document).ready(function() {
     document.addEventListener( 'mousedown', onDocumentMouseDown, false );
     document.addEventListener( 'touchstart', onDocumentTouchStart, false );
     document.addEventListener( 'touchmove', onDocumentTouchMove, false );
+
+    $("#button_3d").bind("click", function(){ 
+        targetRotation = 0;
+        camera.position.x = <%= (@max_cubes_per_line * ( @cube_size + @cube_padding )/2) %>;
+        camera.position.y = <%= (@lines.count * ( @cube_size + @cube_padding )/4) %>;
+        camera.position.z = <%= (@max_cubes_per_line * ( @cube_size + @cube_padding )/2)%>;
+    });
+
+    $("#button_2d").bind("click", function(){ 
+        targetRotation = 0;
+        camera.position.x = 0;
+        camera.position.y = 0;
+        camera.position.z = <%= (@max_cubes_per_line * ( @cube_size + @cube_padding )/2)%>;
+        camera.lookAt(scene.position);
+    });
+
+    $("#button_left").bind("click", function(){ 
+      targetRotation = 0;
+      camera.position.x = x * Math.cos(0.1) + z * Math.sin(0.1);
+      camera.position.z = z * Math.cos(0.1) - x * Math.sin(0.1);
+      camera.lookAt(scene.position);
+    });
+
+    $("#button_right").bind("click", function(){ 
+      targetRotation = 0;
+      camera.position.x = x * Math.cos(0.1) - z * Math.sin(0.1);
+      camera.position.z = z * Math.cos(0.1) + x * Math.sin(0.1);
+      camera.lookAt(scene.position);
+    });
+
+
+    $("#button_up").bind("click", function(){ 
+      camera.position.x -= 10;
+      camera.position.z -= 10;
+    }); 
+
+    $("#button_down").bind("click", function(){ 
+      camera.position.x += 10;
+      camera.position.z += 10;
+    });
+
   }
 
   //
@@ -158,22 +199,8 @@ jQuery(document).ready(function() {
 
   }
 
+  
   function render() {
-
-    //plane.rotation.y += ( targetRotation - camera.rotation.y ) * 0.05; 
-    //camera.rotation.y += ( targetRotation - camera.rotation.y ) * 0.05;
-    //camera.rotation.x += ( targetRotation - camera.rotation.y ) * 0.05;
-    // centerX = 150;
-    // centerY = 100;
-    // centerZ = -500;
-    // camera.lookAt( new THREE.Vector3( centerX, centerX,centerZ ) );
-     
-    // camera.position.x = Math.floor(Math.cos( targetRotation ) * 500);
-    
-
-    //camera.position.x += targetRotation * 2;
-    //camera.rotation.y += ( targetRotation - camera.rotation.y ) * 0.05;
-    //camera.rotation.x += ( targetRotationX - camera.rotation.x ) * 0.0125;
 
     x = camera.position.x;
     z = camera.position.z;
