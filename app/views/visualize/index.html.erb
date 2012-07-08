@@ -11,7 +11,10 @@
     <%= radio_button_tag "calculation", "charcount", (@calculation == "charcount") %> Buchstabenhäufigkeit <br/>
     <%= radio_button_tag "calculation", "words", (@calculation == "words") %> Worte <br/>
     <%= radio_button_tag "calculation", "wordcount", (@calculation == "wordcount") %> Worthäufigkeit <br/>
-    <%= submit_tag "Submit" %>
+    <%= hidden_field_tag "show_grid", false %>
+    <br/>
+    <%= check_box_tag "show_grid", "true", @show_grid == "true" %> Gitter anzeigen
+    <%= submit_tag "Run Visualization" %>
   <% end -%>
 </div> 
 

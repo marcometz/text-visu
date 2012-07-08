@@ -36,6 +36,16 @@ jQuery(document).ready(function() {
     <% @lines.each_with_index do |line, index_line| %>
       position_y = 200 - (<%= index_line %> * (cube_size + cube_padding)) ;
       <% line.each_with_index do |cube, index_cube| %>
+        position_x = <%= (@max_cubes_per_line * ( @cube_size + @cube_padding )/2) * -1%> + (<%= index_cube %> * (cube_size + cube_padding));
+        <% if @show_grid == "true" %>  
+        var plane = new THREE.Mesh(new THREE.PlaneGeometry(1,<%= (@max_cubes_per_line * ( @cube_size + @cube_padding )) / 2 %>), new THREE.MeshBasicMaterial({color: 0x000fff }));
+        plane.doubleSided = true;
+        plane.overdraw = true;
+        plane.position.z = <%= (@max_cubes_per_line * ( @cube_size + @cube_padding )) / 4 * -1%>;
+        plane.position.y = position_y;
+        plane.position.x = position_x;
+        scene.add(plane);
+        <% end %>
         materials = [];
         for ( var i = 0; i < 6; i ++ ) {
           cube_color = new THREE.Color();
@@ -46,7 +56,7 @@ jQuery(document).ready(function() {
           );
           materials.push( new THREE.MeshBasicMaterial( { color: cube_color.getHex()} ) );
         }
-        position_x = <%= (@max_cubes_per_line * ( @cube_size + @cube_padding )/2) * -1%> + (<%= index_cube %> * (cube_size + cube_padding));
+        
         <% if @calculation == "charcount" %>
           position_z = -<%= (cube[:count] * ( @cube_size + @cube_padding )) %> ;
         <% else %>
@@ -143,8 +153,8 @@ jQuery(document).ready(function() {
     mouseX = event.clientX - windowHalfX;
     mouseY = event.clientY - windowHalfY;
 
-    targetRotation = targetRotationOnMouseDown + ( mouseX - mouseXOnMouseDown ) * 0.02;
-    targetRotationX = targetRotationXOnMouseDown + ( mouseY - mouseYOnMouseDown ) * 0.02;
+    targetRotation = targetRotationOnMouseDown + ( mouseX - mouseXOnMouseDown ) * 0.002;
+    targetRotationX = targetRotationXOnMouseDown + ( mouseY - mouseYOnMouseDown ) * 0.002;
   }
 
   function onDocumentMouseUp( event ) {
