@@ -4,23 +4,25 @@
 
 
 #sidebar{
-  margin:0 auto;
+  float:left;
+  width:15%;
+  height:300px;
+  z-index:9999;
   #text{
     width:90%;
-    height:50px;
+    height:200px;
   }
 }
-div#container{
-  margin:0 auto;
+#container{
+  float:left;
+  width:80%;
   canvas{
     border:2px solid black;
-    box-shadow:10px 10px 10px grey;
-  }  
+    box-shadow:10px 10px 10px grey;  
+  }
 }
 
-
 #legende{
-  margin:0 auto;
   clear:both;
   padding-top:20px;
   margin-left:15%;

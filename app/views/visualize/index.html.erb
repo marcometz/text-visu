@@ -1,12 +1,16 @@
 <script src="/visualize/index.js"></script>
 
+<h1>Visualize Text</h1>
 
-
-<div id="sidebar" style="width:<%= @inner_width %>px;">
-  <h1>Visualize Text</h1>
+<div id="sidebar">
+  
   <h3>Bitte geben Sie einen Text ein:</h3>
   <%= form_tag "/visualize/render" do  -%>
     <%= text_area_tag "text", @text_to_render, :id => "text" %>  
+    <%= radio_button_tag "calculation", "char", (@calculation == "char") %> Buchstaben <br/>
+    <%= radio_button_tag "calculation", "charcount", (@calculation == "charcount") %> Buchstabenhäufigkeit <br/>
+    <%= radio_button_tag "calculation", "words", (@calculation == "words") %> Worte <br/>
+    <%= radio_button_tag "calculation", "wordcount", (@calculation == "wordcount") %> Worthäufigkeit <br/>
     <%= submit_tag "Submit" %>
   <% end -%>
 </div> 
