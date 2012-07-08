@@ -40,13 +40,18 @@ jQuery(document).ready(function() {
         for ( var i = 0; i < 6; i ++ ) {
           cube_color = new THREE.Color();
           cube_color.setRGB(
-              <%= Setting.for_key("color_of-#{cube}-(r,g,b)").split(",")[0].to_f / 255 %>,
-              <%= Setting.for_key("color_of-#{cube}-(r,g,b)").split(",")[1].to_f / 255 %>,
-              <%= Setting.for_key("color_of-#{cube}-(r,g,b)").split(",")[2].to_f / 255 %>
+              <%= Setting.for_key("color_of-#{cube[:char]}-(r,g,b)").split(",")[0].to_f / 255 %>,
+              <%= Setting.for_key("color_of-#{cube[:char]}-(r,g,b)").split(",")[1].to_f / 255 %>,
+              <%= Setting.for_key("color_of-#{cube[:char]}-(r,g,b)").split(",")[2].to_f / 255 %>
           );
           materials.push( new THREE.MeshBasicMaterial( { color: cube_color.getHex()} ) );
         }
         position_x = <%= (@max_cubes_per_line * ( @cube_size + @cube_padding )/2) * -1%> + (<%= index_cube %> * (cube_size + cube_padding));
+        <% if @calculation == "charcount" %>
+          position_z = -<%= (cube[:count] * ( @cube_size + @cube_padding )) %> ;
+        <% else %>
+          position_z = 0;
+        <% end %>
         cube_<%= index_cube %> = 
           new THREE.Mesh( 
               new THREE.CubeGeometry( 
@@ -56,6 +61,7 @@ jQuery(document).ready(function() {
           );
         cube_<%= index_cube %>.position.y = position_y;
         cube_<%= index_cube %>.position.x = position_x;
+        cube_<%= index_cube %>.position.z = position_z;
         scene.add( cube_<%= index_cube %> );
       <% end %>
     <% end %>

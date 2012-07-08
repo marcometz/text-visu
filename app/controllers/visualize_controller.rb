@@ -10,7 +10,7 @@ class VisualizeController < ApplicationController
     @lines = []
     @text_to_render.lines.each do |line|
       @max_cubes_per_line = line.length if line.length > @max_cubes_per_line
-      @lines << line.split("")
+      @lines << line.split("").map{|a| {:count => @text_to_render.count(a), :char => a }}
     end
     puts @lines.inspect
   end
