@@ -72,7 +72,9 @@ jQuery(document).ready(function() {
         cube_<%= index_cube %>.position.y = position_y;
         cube_<%= index_cube %>.position.x = position_x;
         cube_<%= index_cube %>.position.z = position_z;
-        scene.add( cube_<%= index_cube %> );
+        <% unless cube[:char] == " " %>
+          scene.add( cube_<%= index_cube %> );
+        <% end %>
       <% end %>
     <% end %>
 
@@ -125,6 +127,7 @@ jQuery(document).ready(function() {
       camera.position.z -= 10;
     }); 
 
+
     $("#button_down").bind("click", function(){ 
       camera.position.x += 10;
       camera.position.z += 10;
@@ -136,8 +139,8 @@ jQuery(document).ready(function() {
 
   function onDocumentMouseDown( event ) {
 
-    event.preventDefault();
-
+    //event.preventDefault();
+    targetRotation = 0;
     document.addEventListener( 'mousemove', onDocumentMouseMove, false );
     document.addEventListener( 'mouseup', onDocumentMouseUp, false );
     document.addEventListener( 'mouseout', onDocumentMouseOut, false );
