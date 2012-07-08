@@ -14,3 +14,8 @@
 //= require jquery_ujs
 //= require settings
 //= require three
+
+
+jQuery(document).ready(function() {
+  $("#text").focus();
+});
