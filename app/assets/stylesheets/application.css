@@ -24,3 +24,15 @@
    border-radius: 5px;
  }
  
+
+body{
+  font-family: Scala;
+}
+
+div#logo{
+  float:left;
+}
+
+div#content{
+  clear:both;
+}

@@ -13,12 +13,15 @@
     height:200px;
   }
 }
-#container{
+
+#wrapper{
   float:left;
-  width:80%;
-  canvas{
-    border:2px solid black;
-    box-shadow:10px 10px 10px grey;  
+  #container{
+    width:80%;
+    canvas{
+      border:2px solid black;
+      box-shadow:10px 10px 10px grey;  
+    }
   }
 }
 
@@ -28,19 +31,52 @@
   text-align:center;
   line-height:30px;
   a{
-    margin:10px;
     text-decoration: none;  
     font-weight:bold;
-    border:1px solid grey;
     padding:5px;
-    border-radius: 5px;
+    margin-bottom:2px;
+    background-color:lightgray;
+    display:block;
+    &.view{
+      text-decoration:line-through;  
+    }
+    &.active{
+      text-decoration:none;
+    }
+  }
+  h3{
+    background-color:gray;
+    margin-bottom:2px;
+  }
+  input[type="input"]{
+   background-color:lightgray; 
+  }
+  input[type="radio"],input[type="checkbox"]{
+   display:none;
+  }
+  label{
+    background-color:lightgray;  
+    cursor:pointer;
+    &.code,&.image{
+      text-decoration:line-through;
+      &:hover{
+        color:white;
+      }
+    }
+   &.active{
+    text-decoration:none;
+   }
+  }
+  div{
+    display:block;
+    background-color:lightgray; 
+    margin-bottom:2px;
   }
 }
 
 #legende{
   clear:both;
   padding-top:20px;
-  margin-left:15%;
   ul{
     list-style:none;
     li{
@@ -58,3 +94,5 @@
     }
   }
 }
+
+

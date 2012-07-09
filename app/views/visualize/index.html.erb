@@ -1,46 +1,56 @@
 <script src="/visualize/index.js"></script>
 
-<h1>Visualize Text</h1>
+<div id="content">
+  <div id="sidebar">  
+    <h3>Bitte geben Sie einen Text ein:</h3>
+      <%= form_tag "/visualize/render" do  -%>  
+        <%= text_area_tag "text", @text_to_render, :id => "text", :placeholder => "Hier den Text eingeben" %>  
+        <%= submit_tag "Run Visualization" %>
+      <% end -%>  
+  </div> 
 
-<div id="sidebar">
+
+  <div id="wrapper">
+    <div id="container" style="width:<%= @inner_width %>px;"></div>
+    <div id="legende" style="width:<%= @inner_width %>px;">
+      <ul>
+        <% Setting.where("name LIKE '%color_of-%'").order(:name).each do |colorbox| %>
+          <li style="background-color:rgb(<%= colorbox.value %>);">
+            <div class="label">
+              <%= colorbox.name.gsub("color_of-", "").gsub("-(r,g,b)","") %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <div id="controlls">
+    <%= form_tag "/visualize/render", :class => "controll_form" do  -%>  
+      <h3>CODIERUNG</h3>
+        <div><label class="code <%= @calculation == "char" ? "active" : "" %>"><%= radio_button_tag "calculation", "char", (@calculation == "char") %> Buchstaben</label></div>
+        <div><label class="code <%= @calculation == "charcount" ? "active" : "" %>"><%= radio_button_tag "calculation", "charcount", (@calculation == "charcount") %> Buchstabenhäufigkeit</label></div>
+        <div><label class="code <%= @calculation == "words" ? "active" : "" %>"><%= radio_button_tag "calculation", "words", (@calculation == "words") %> Worte</label></div>
+        <div><label class="code <%= @calculation == "wordcount" ? "active" : "" %>"><%= radio_button_tag "calculation", "wordcount", (@calculation == "wordcount") %> Worthäufigkeit</label></div>
+        <%= hidden_field_tag "show_grid", false %>
+        <%= hidden_field_tag "navigation_3d", false %>
+    
+      <h3>Steuerung</h3>
+      <a href="#" id="button_up">Vor</a>
+      <a href="#" id="button_left">links</a> <a href="#" id="button_right">rechts</a>
+      <a href="#" id="button_down">Zurück</a>
+
+      <h3>Ansicht</h3>
+      <a href="#" id="button_2d" class="view">2D</a>
+      <a href="#" id="button_3d" class="view active">3D</a>
+      <div><label class="image <%= @show_grid == "true" ? "active" : "" %>">
+        <%= check_box_tag "show_grid", "true", @show_grid == "true" %> Gitter anzeigen
+      </label></div>
+      <div><label class="image <%= @navigation_3d == "true" ? "active" : "" %>">
+        <%= check_box_tag "navigation_3d", "true", @navigation_3d == "true" %> 3D Navigation
+      </label></div>
+    <% end -%>
+  </div>
+
   
-  <h3>Bitte geben Sie einen Text ein:</h3>
-  <%= form_tag "/visualize/render" do  -%>
-    <%= text_area_tag "text", @text_to_render, :id => "text" %>  
-    <%= radio_button_tag "calculation", "char", (@calculation == "char") %> Buchstaben <br/>
-    <%= radio_button_tag "calculation", "charcount", (@calculation == "charcount") %> Buchstabenhäufigkeit <br/>
-    <%= radio_button_tag "calculation", "words", (@calculation == "words") %> Worte <br/>
-    <%= radio_button_tag "calculation", "wordcount", (@calculation == "wordcount") %> Worthäufigkeit <br/>
-    <%= hidden_field_tag "show_grid", false %>
-    <%= hidden_field_tag "navigation_3d", false %>
-    <br/>
-    <%= check_box_tag "show_grid", "true", @show_grid == "true" %> Gitter anzeigen<br/>
-    <%= check_box_tag "navigation_3d", "true", @navigation_3d == "true" %> 3D Navigation
-    <%= submit_tag "Run Visualization" %>
-  <% end -%>
-</div> 
-
-<div id="container" style="width:<%= @inner_width %>px;"></div>
-
-<div id="controlls">
-  <h3>Steuerung</h3>
-  <a href="#" id="button_2d">2D</a><br/>
-  <a href="#" id="button_3d">3D</a><br/>
-  <br/><br/>
-
-  <a href="#" id="button_up">Vor</a><br/>
-  <a href="#" id="button_left">left</a> <a href="#" id="button_right">right</a><br/>
-  <a href="#" id="button_down">Zurück</a><br/>
-</div>
-
-<div id="legende" style="width:<%= @inner_width %>px;">
-  <ul>
-    <% Setting.where("name LIKE '%color_of-%'").order(:name).each do |colorbox| %>
-      <li style="background-color:rgb(<%= colorbox.value %>);">
-        <div class="label">
-          <%= colorbox.name.gsub("color_of-", "").gsub("-(r,g,b)","") %>
-        </div>
-      </li>
-    <% end %>
-  </ul>
 </div>

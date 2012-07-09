@@ -18,4 +18,21 @@
 
 jQuery(document).ready(function() {
   $("#text").focus();
+
+  $("a.view").bind("click", function(){
+    $("a.view").removeClass("active");
+    $(this).addClass("active");
+  });
+
+  $("label.code").bind("click", function(){
+    $("a.code").removeClass("active");
+    $(this).addClass("active");
+  });
+
+  $(".controll_form").bind("change", function(){
+    $(this).trigger("submit");
+  })
+
 });
+
+
